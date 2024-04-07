@@ -1,4 +1,6 @@
 let tasks = [];
+tasks =  JSON.parse(localStorage.getItem("tasks"));
+a();
 function d(dd) {
   if (tasks[dd].isDone == "check") {
     tasks[dd].isDone = "cancel";
@@ -68,5 +70,6 @@ document.getElementById("btn").addEventListener("click", function () {
     datee: dat,
     isDone: "check",
   });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
   a();
 });
