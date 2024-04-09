@@ -1,12 +1,12 @@
 let tasks = [];
-// tasks =  JSON.parse(localStorage.getItem("tasks"));
-// a();
+getTasksFromStorag();
 function d(dd) {
   if (tasks[dd].isDone == "check") {
     tasks[dd].isDone = "cancel";
   } else if (tasks[dd].isDone == "cancel") {
     tasks[dd].isDone = "check";
   }
+  storeTasks();
   a();
 }
 function c(cc) {
@@ -14,6 +14,7 @@ function c(cc) {
   let jj = confirm("هل انت متأكد من التعديل على المهمة");
   if (jj) {
     tasks[cc].taskk = j;
+    storeTasks();
     a();
   }
 }
@@ -21,6 +22,7 @@ function b(bb) {
   let sure = confirm("هل انت متأكد من انك تريد حذف مهمة : " + tasks[bb].taskk);
   if (sure) {
     tasks.splice(bb, 1);
+    storeTasks();
     a();
   }
 }
@@ -70,6 +72,17 @@ document.getElementById("btn").addEventListener("click", function () {
     datee: dat,
     isDone: "check",
   });
-  // localStorage.setItem("tasks", JSON.stringify(tasks));
+  storeTasks();
   a();
 });
+
+// storage Function
+function storeTasks() {
+  let stringTask = JSON.stringify(tasks);
+  localStorage.setItem("tasks", stringTask);
+}
+function getTasksFromStorag() {
+  tasks = JSON.parse(localStorage.getItem("tasks"));
+  a();
+}
+
